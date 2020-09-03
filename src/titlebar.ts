@@ -8,11 +8,11 @@
  *  Licensed under the MIT License. See License in the project root for license information.
  *-------------------------------------------------------------------------------------------------------*/
 
-import { isMacintosh, isWindows, isLinux } from './common/platform';
+import { BrowserWindow, Menu, remote } from 'electron';
 import { Color, RGBA } from './common/color';
-import { EventType, hide, show, removeClass, addClass, append, $, addDisposableListener, prepend, removeNode } from './common/dom';
+import { $, addClass, addDisposableListener, append, EventType, hide, prepend, removeClass, removeNode, show } from './common/dom';
+import { isLinux, isMacintosh, isWindows } from './common/platform';
 import { Menubar, MenubarOptions } from './menubar';
-import { remote, BrowserWindow } from 'electron';
 import { Theme, Themebar } from './themebar';
 
 const INACTIVE_FOREGROUND_DARK = Color.fromHex('#222222');
@@ -498,7 +498,7 @@ export class Titlebar extends Themebar {
 	 * @param menu The menu.
 	 */
 	// Menu enhancements, moved menu to bottom of window-titlebar. (by @MairwunNx) https://github.com/AlexTorresSk/custom-electron-titlebar/pull/9
-	updateMenu(menu: Electron.Menu) {
+	updateMenu(menu: Menu) {
 		if (!isMacintosh) {
 			if (this.menubar) {
 				this.menubar.dispose();
